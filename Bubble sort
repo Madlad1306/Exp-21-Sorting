@@ -1,0 +1,43 @@
+#include <iostream>
+using namespace std;
+
+void bubbleSort(int arr[], int size) {
+    for (int i = 0; i < size - 1; i++) {
+        bool swapped = false; // Optimization: stop if array is already sorted
+        for (int j = 0; j < size - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                // Swap adjacent elements
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+                swapped = true;
+            }
+        }
+        if (!swapped) // No swaps means array is sorted
+            break;
+    }
+}
+
+void displayArray(int arr[], int size) {
+    for (int i = 0; i < size; i++)
+        cout << arr[i] << " ";
+    cout << endl;
+}
+
+int main() {
+    int arr[] = {64, 34, 25, 12, 22, 11, 90};
+    int size = sizeof(arr) / sizeof(arr[0]);
+
+    cout << "Original array: ";
+    displayArray(arr, size);
+
+    bubbleSort(arr, size);
+
+    cout << "Sorted array:   ";
+    displayArray(arr, size);
+
+    return 0;
+}
+
+Original array: 64 34 25 12 22 11 90 
+Sorted array:   11 12 22 25 34 64 90
